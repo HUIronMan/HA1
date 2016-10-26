@@ -8,6 +8,8 @@
 \usepackage[utf8]{inputenc}
 \usepackage{amssymb}
 \usepackage{graphicx}
+\usepackage{tikz}
+\usetikzlibrary{automata}
 %\newcommand{\genasso}[2]{\begin{minipage}{0.7\textwidth}\begin{normalsize}\begin{flushleft}\textbf{{#1}}\end{flushleft}\end{normalsize}\vspace{-1cm}\begin{flushleft}\begin{small}{#2}\end{small}\end{flushleft}\end{minipage}\\\vspace{0.2cm}}
 \pagenumbering{arabic}
 
@@ -75,7 +77,33 @@
 \subsection*{a)}
 % Anyone good with TikZ?
 %  https://www.youtube.com/watch?v=LoBC8zIB-3k
-
+\begin{tikzpicture}[node distance=4cm]
+	\node (a) at (0, 2) [state] {};
+	\node (b) at (2, 3) [state] {};
+	\node (c) at (4, 2) [state] {};
+	\node (d) at (2, 1) [state] {};
+	\node (e) at (1, 0) [state] {};
+	\node (f) at (6, 0) [state] {};
+	\node (g) at (7, 2) [state] {};
+	\node (h) at (9, 2) [state] {};
+	
+	\path[->]
+		(a) edge node[above] {$A, 5$} (b)
+		(b) edge node[above] {$E, 7$} (c)
+		(a) edge node[above] {$D, 2$} (c)
+		(a) edge node[above] {$B, 3$} (d)
+		(d) edge node[above] {$F, 10$} (c)
+		(a) edge node[right] {$B, 3$} (e)
+		(a) edge[bend right] node[left] {$C, 10$} (e)
+		(e) edge node[above] {$G, 9$} (f)
+		(c) edge node[right] {$H, 5$} (f)
+		% One cold argue, that it's kind of pointless to include dependencies twice (eg. by depending on H (which depends on E) and E).
+		(b) edge[bend left=50] node[above] {$E, 7$} (f)
+		(d) edge node[above] {$F, 10$} (f)
+		(f) edge node[right] {$I, 4$} (g)
+		(g) edge node[above] {$J, 2$} (h);
+		
+\end{tikzpicture}
 
 \subsection*{b)}
 
