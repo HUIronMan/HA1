@@ -9,6 +9,7 @@
 \usepackage{amssymb}
 \usepackage{graphicx}
 \usepackage{tikz}
+\usepackage{pgfgantt}
 \usetikzlibrary{automata}
 %\newcommand{\genasso}[2]{\begin{minipage}{0.7\textwidth}\begin{normalsize}\begin{flushleft}\textbf{{#1}}\end{flushleft}\end{normalsize}\vspace{-1cm}\begin{flushleft}\begin{small}{#2}\end{small}\end{flushleft}\end{minipage}\\\vspace{0.2cm}}
 \pagenumbering{arabic}
@@ -173,6 +174,36 @@ C $\Rightarrow$ G $\Rightarrow$ I $\Rightarrow$ J
 % Usefull information:
 %  http://www.martin-kumm.de/wiki/doku.php?id=Projects:A_LaTeX_package_for_gantt_plots
 %  http://tex.stackexchange.com/questions/1333/latex-templates-for-project-management-tasks
+\begin{ganttchart}{1}{25}
+%\gantttitle{Zeit}{25} \\
+\gantttitlelist{1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25}{1} \\
+\ganttgroup{Person 1}{1}{12} \\
+\ganttbar{A}{1}{5} \\
+\ganttlinkedbar{E}{6}{12} \\
+\ganttbar{D}{13}{14} \\
+
+\ganttgroup{Person 2}{1}{14} \\
+\ganttbar{B}{1}{3} \\
+\ganttlinkedbar{F}{4}{14} \\
+\ganttlinkedbar{H}{15}{19} \\
+
+
+\ganttgroup{Person 3}{1}{25} \\
+\ganttbar{C}{1}{10} \\
+\ganttlinkedbar{G}{11}{19} \\
+\ganttlinkedbar{I}{20}{23} \\
+\ganttlinkedbar{J}{24}{25} \\
+
+\ganttlink{elem2}{elem7}
+\ganttlink{elem3}{elem7}
+\ganttlink{elem7}{elem11}
+\end{ganttchart}
+\\
+Es werden genau 3 Personen benötigt um Dingsdabums in der schnellstmöglichen Zeit (25) zu produzieren:
+Aufgabe A und E (hängt von A ab) und D, welches von keiner Aufgabe abhängt) können nacheinander so arrangiert werden, dass sie zum Start von Aufgabe H fertig sind, welches von E und D abhängt. \\
+Eine zweite Person bearbeitet parallel B und F (hängt von B ab), sodass F rechtzeitig fertig wird, wenn H begonnen wird. Denn H hängt auch von F ab. \\
+Eine dritte Person kümmert sich um den kritischen Pfad: C, G. \\
+H und G werden so zeitgleich fertig, sodass der Pfad IJ begonnen werden kann, welches von H und G abhängt.
 
 \section*{Aufgabe 3 (Bonus)}
 
